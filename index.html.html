@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teatro - Selección de Asientos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      display: inline-block;
+      margin-top: 20px;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
+    }
+    .seat {
+      width: 30px;
+      height: 30px;
+      margin: 2px;
+      background-color: grey;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .seat.selected {
+      background-color: #00bfff;
+    }
+    .seat.empty {
+      background: transparent;
+      cursor: default;
+    }
+    .seat.disabled {
+      background-color: #444;
+      cursor: not-allowed;
+    }
+    .label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      font-weight: bold;
+    }
+    .gap-row {
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Escenario</h1>
+  <div class="container">
+    <!-- Fila A: 19 asientos -->
+    <div class="row">
+      <div class="label">A</div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Filas B, C, D y E: 19 asientos cada una (idénticas a la A) -->
+    <div class="row">
+      <div class="label">B</div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <div class="row">
+      <div class="label">C</div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <div class="row">
+      <div class="label">D</div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <div class="row">
+      <div class="label">E</div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Filas F y G: primera parte con 10 asientos, luego 4 espacios en blanco y 5 asientos (15-19) -->
+    <div class="row">
+      <div class="label">F</div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <div class="row">
+      <div class="label">G</div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Espacio visual entre la fila G y la fila H -->
+    <div class="gap-row"></div>
+
+    <!-- Fila H -->
+    <div class="row">
+      <div class="label">H</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <!-- Celda H7: símbolo de discapacitado -->
+      <div class="seat disabled">♿</div>
+      <!-- Continuación del primer segmento: celdas 8 a 14 -->
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <!-- Celda vacía que deja el espacio -->
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <!-- Segundo segmento: 5 celdas -->
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat disabled">♿</div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Fila I -->
+    <div class="row">
+      <div class="label">I</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <!-- Segundo segmento -->
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Fila J -->
+    <div class="row">
+      <div class="label">J</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <!-- Segundo segmento -->
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+    </div>
+
+    <!-- Fila K -->
+    <div class="row">
+      <div class="label">K</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <!-- Segundo segmento -->
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat" onclick="toggleSeat(this)">15</div>
+      <div class="seat" onclick="toggleSeat(this)">16</div>
+      <div class="seat" onclick="toggleSeat(this)">17</div>
+      <div class="seat" onclick="toggleSeat(this)">18</div>
+      <div class="seat" onclick="toggleSeat(this)">19</div>
+    </div>
+
+    <!-- Fila L -->
+    <div class="row">
+      <div class="label">L</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Fila M -->
+    <div class="row">
+      <div class="label">M</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat" onclick="toggleSeat(this)">14</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Fila N -->
+    <div class="row">
+      <div class="label">N</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat" onclick="toggleSeat(this)">13</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+    </div>
+
+    <!-- Fila Ñ -->
+    <div class="row">
+      <div class="label">Ñ</div>
+      <!-- Celdas 1 a 6 -->
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat" onclick="toggleSeat(this)">1</div>
+      <div class="seat" onclick="toggleSeat(this)">2</div>
+      <div class="seat" onclick="toggleSeat(this)">3</div>
+      <div class="seat" onclick="toggleSeat(this)">4</div>
+      <div class="seat" onclick="toggleSeat(this)">5</div>
+      <div class="seat" onclick="toggleSeat(this)">6</div>
+      <div class="seat" onclick="toggleSeat(this)">7</div>
+      <div class="seat" onclick="toggleSeat(this)">8</div>
+      <div class="seat" onclick="toggleSeat(this)">9</div>
+      <div class="seat" onclick="toggleSeat(this)">10</div>
+      <div class="seat" onclick="toggleSeat(this)">11</div>
+      <div class="seat" onclick="toggleSeat(this)">12</div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+      <div class="seat empty"></div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleSeat(seat) {
+      if (!seat.classList.contains('empty') && !seat.classList.contains('disabled')) {
+        seat.classList.toggle('selected');
+        saveSeats();
+      }
+    }
+
+    // Guarda los índices de los asientos seleccionados (excluyendo los "empty" y "disabled")
+    function saveSeats() {
+      const seats = document.querySelectorAll('.seat:not(.empty):not(.disabled)');
+      const selectedSeats = Array.from(seats)
+        .map((seat, index) => seat.classList.contains('selected') ? index : null)
+        .filter(index => index !== null);
+      localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+    }
+
+    // Carga y aplica la selección guardada al recargar la página
+    function loadSeats() {
+      const seats = document.querySelectorAll('.seat:not(.empty):not(.disabled)');
+      const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+      if (selectedSeats !== null && Array.isArray(selectedSeats)) {
+        seats.forEach((seat, index) => {
+          if (selectedSeats.includes(index)) {
+            seat.classList.add('selected');
+          }
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadSeats);
+    window.addEventListener('beforeunload', saveSeats);
+  </script>
+</body>
+</html>
